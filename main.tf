@@ -23,7 +23,7 @@ resource "azurerm_network_security_group" "example" {
 }
 
 resource "azurerm_virtual_network" "example" {
-  name                = "mmuns-tf-network"
+  name                = "mmuns-tf-network-001"
   location            = azurerm_resource_group.my_rg.location
   resource_group_name = azurerm_resource_group.my_rg.name
   address_space       = ["10.0.0.0/16"]
