@@ -21,7 +21,7 @@ jobs:
           terraform_version: 1.0.0  # Specify the Terraform version
 
       - name: Terraform Init
-        run: terraform init terraform/
+        run: terraform init
 
       - name: Terraform Plan
         id: plan
