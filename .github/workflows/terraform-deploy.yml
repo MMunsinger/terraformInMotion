@@ -1,0 +1,37 @@
+name: Terraform CI/CD
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'terraform/**/*.tf'  # Trigger only on changes to .tf files
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.0.0  # Specify the Terraform version
+
+      - name: Terraform Init
+        run: terraform init terraform/
+
+      - name: Terraform Plan
+        id: plan
+        run: terraform plan -out=tfplan terraform/
+
+      - name: Terraform Apply
+        if: success()  # Only apply if the plan was successful
+        run: terraform apply -auto-approve tfplan
+
+      - name: Clean up
+        if: success()  # Clean up if everything was successful
+        run: |
+          terraform destroy -auto-approve terraform/
