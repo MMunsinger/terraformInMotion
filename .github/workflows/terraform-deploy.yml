@@ -27,7 +27,7 @@ jobs:
           AZURE_PASSWORD: ${{ secrets.AZURE_PASSWORD }}
           AZURE_TENANT: ${{ secrets.AZURE_TENANT }}
         run: |
-          echo "Running Terraform with Azure credentials"
+          az login --service-principal -u ${{ secrets.AZURE_APP_ID }} -p ${{ secrets.AZURE_PASSWORD }} --tenant ${{ secrets.AZURE_TENANT }}
   
       - name: Terraform Init
         run: terraform init
