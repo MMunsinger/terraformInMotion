@@ -19,7 +19,14 @@ jobs:
         uses: hashicorp/setup-terraform@v2
         with:
           terraform_version: 1.0.0  # Specify the Terraform version
-
+      - name: Set up Azure Credentials
+        env:
+          AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
+        run: echo "${AZURE_CREDENTIALS}" > az_credentials.json
+  
+      - name: Configure Azure CLI
+        run: |
+            az login --service-principal --username $(jq -r .clientId az_credentials.json) --password $(jq -r .clientSecret az_credentials.json) --tenant $(jq -r .tenantId az_credentials.json)
       - name: Terraform Init
         run: terraform init
 
