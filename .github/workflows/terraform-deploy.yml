@@ -20,8 +20,10 @@ jobs:
         with:
           terraform_version: ~>1.9
       
-      - name: Set up Terraform-docs
-        uses: Dirrk/terraform-docs@v1.0.8
+      - name: Install terraform-docs
+        run: |
+          curl -sSL https://github.com/terraform-docs/terraform-docs/releases/latest/download/terraform-docs-linux-amd64 -o ./bin/terraform-docs
+          chmod +x ./bin/terraform-docs
 
       - name: Run Terraform
         env:
