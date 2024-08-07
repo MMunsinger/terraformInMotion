@@ -70,6 +70,7 @@ jobs:
       - name: Commit readme changes
         if: success()
         run: |
+          sudo chmod a+xrw .git/*
           git config --local user.name "Github Action"
           git config --local user.email "action@github.com"
           git add README.md
