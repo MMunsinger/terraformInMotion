@@ -20,8 +20,8 @@ jobs:
         with:
           terraform_version: ~>1.9
       
-      - name: terraform-docs-gh-actions
-        uses: terraform-docs/gh-actions@v1.2.0
+      - name: Set up Terraform-docs
+        uses: Dirrk/terraform-docs@v1.0.8
 
       - name: Run Terraform
         env:
