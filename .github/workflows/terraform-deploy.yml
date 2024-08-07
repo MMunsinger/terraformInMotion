@@ -22,8 +22,6 @@ jobs:
       
       - name: Setup Terraform Docs
         uses: actions/checkout@v3
-        with:
-          ref: master
       
       - name: Verify terraform-docs installation
         run: terraform-docs --version  # Verify installation
