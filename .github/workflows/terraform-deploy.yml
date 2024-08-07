@@ -18,7 +18,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4.1.7
         with:
-          fetch-depth: 0
+          persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of personal token
+          fetch-depth: 0 # otherwise, you will fail to push refs to dest repo
 
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@v2
