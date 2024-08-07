@@ -40,7 +40,7 @@ jobs:
         if: success()  # Only apply if the plan was successful
         run: terraform apply -auto-approve tfplan
 
-      - name: Clean up
-        if: success()  # Clean up if everything was successful
-        run: |
-          terraform destroy -auto-approve terraform/
+      #- name: Clean up
+      #  if: success()  # Clean up if everything was successful
+      #  run: |
+      #    terraform destroy -auto-approve
