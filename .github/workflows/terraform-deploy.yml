@@ -20,11 +20,11 @@ jobs:
         with:
           terraform_version: ~>1.9
       
-      - name: Install terraform-docs
-        run: |
-          sudo curl -sSL https://github.com/terraform-docs/terraform-docs/releases/latest/download/terraform-docs-linux-amd64 -o /usr/local/bin/terraform-docs
-          sudo chmod +x /usr/local/bin/terraform-docs
-  
+      - name: Setup Terraform Docs
+        uses: actions/checkout@v3
+        with:
+          ref: master
+      
       - name: Verify terraform-docs installation
         run: terraform-docs --version  # Verify installation
 
