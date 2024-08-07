@@ -43,4 +43,4 @@ resource "azurerm_virtual_network" "example" {
 #   tags = {
 #     "dateDestroy" : "12/12/2024"
 #   }
-# }
+ }
