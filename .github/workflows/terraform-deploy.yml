@@ -77,6 +77,8 @@ jobs:
         if: success()
         run: |
           sudo chmod -R ugo+rwX .
+          git config --global user.email "matthew.munsinger@gmail.com"
+          git config --global user.name "Github Actions"
           git add README.md
           git commit -m "Update README with Terraform documentation"
           git push origin
