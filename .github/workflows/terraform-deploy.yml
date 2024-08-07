@@ -9,7 +9,7 @@ on:
 
 permissions:
   contents: write
-  
+
 jobs:
   terraform:
     runs-on: ubuntu-latest
@@ -64,7 +64,7 @@ jobs:
             {{ .Content }}
             <!-- END_TF_DOCS -->
           indention: 3
-    
+
       - name: Commit readme changes
         if: success()
         run: |
@@ -72,7 +72,7 @@ jobs:
           git config --local user.email "action@github.com"
           git add README.md
           git commit -m "Update README with Terraform documentation"
-          git push origin main
+          git push
         env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
