@@ -7,6 +7,9 @@ on:
     paths:
       - '*.tf'  # Trigger only on changes to .tf files
 
+permissions:
+  contents: write
+  
 jobs:
   terraform:
     runs-on: ubuntu-latest
