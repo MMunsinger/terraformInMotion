@@ -79,6 +79,7 @@ jobs:
           sudo chmod -R ugo+rwX .
           git config --global user.email "matthew.munsinger@gmail.com"
           git config --global user.name "MMunsinger"
+          git remote set-url origin https://mmunsinger@github.com/mmunsinger/${{ github.repository_id }}.git
           git add README.md
           git commit -m "Update README with Terraform documentation"
           git push origin
