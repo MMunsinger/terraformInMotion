@@ -22,8 +22,7 @@ jobs:
       
       - name: Install terraform-docs
         run: |
-          curl -sSL https://github.com/terraform-docs/terraform-docs/releases/latest/download/terraform-docs-linux-amd64 -o ./bin/terraform-docs
-          chmod +x ./bin/terraform-docs
+          curl -sSL https://github.com/terraform-docs/terraform-docs/releases/latest/download/terraform-docs-linux-amd64
 
       - name: Run Terraform
         env:
