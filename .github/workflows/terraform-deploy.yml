@@ -20,11 +20,6 @@ jobs:
         with:
           terraform_version: ~>1.9
       
-      - name: Generate TF Docs
-        uses: terraform-docs/gh-actions@v1.2.0
-        with:
-          working-dir: .
-
       - name: Run Terraform
         env:
           AZURE_APP_ID: ${{ secrets.AZURE_APP_ID }}
@@ -46,10 +41,27 @@ jobs:
         run: |
           terraform apply -auto-approve tfplan
         
-      - name: Update Readme
+      - name: Generate TF Docs
         if: success()
-        run: terraform-docs markdown . > README.md
-      
+        uses: terraform-docs/gh-actions@v1.2.0
+        with:
+          working-dir: .
+          output-file: README.md
+          template: |-
+            <!-- BEGIN_TF_DOCS -->
+            # Test Top Line text here
+
+            ## Verify
+
+            Some text here line 1
+            Some text here line 2
+
+            # Usage
+
+            {{ .Content }}
+            <!-- END_TF_DOCS -->
+          indention: 3
+    
       - name: Commit readme changes
         if: success()
         run: |
