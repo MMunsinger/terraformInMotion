@@ -76,7 +76,7 @@ jobs:
       - name: Commit readme changes
         if: success()
         run: |
-          sudo chmod -R ugo+rwX
+          sudo chmod -R ugo+rwX .
           git config --local user.name "Github Action"
           git config --local user.email "action@github.com"
           git add README.md
@@ -85,7 +85,7 @@ jobs:
         env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      #- name: Clean up
-      #  if: success()  # Clean up if everything was successful
-      #  run: |
-      #    terraform destroy -auto-approve
+      - name: Clean up
+        if: success()  # Clean up if everything was successful
+        run: |
+         terraform destroy -auto-approve
