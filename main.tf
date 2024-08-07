@@ -39,4 +39,8 @@ resource "azurerm_virtual_network" "example" {
     address_prefix = "10.0.2.0/24"
     security_group = azurerm_network_security_group.example.id
   }
+
+  tags = {
+    "dateDestroy" : "12/12/2024"
+  }
 }
