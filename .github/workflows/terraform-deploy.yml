@@ -5,7 +5,7 @@ on:
     branches:
       - main
     #paths:
-     # - 'terraform/**/*.tf'  # Trigger only on changes to .tf files
+      - '*.tf'  # Trigger only on changes to .tf files
 
 jobs:
   terraform:
@@ -13,13 +13,16 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4.1.7
 
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@v2
         with:
           terraform_version: ~>1.9
       
+      - name: terraform-docs-gh-actions
+        uses: terraform-docs/gh-actions@v1.2.0
+
       - name: Run Terraform
         env:
           AZURE_APP_ID: ${{ secrets.AZURE_APP_ID }}
@@ -38,7 +41,24 @@ jobs:
 
       - name: Terraform Apply
         if: success()  # Only apply if the plan was successful
-        run: terraform apply -auto-approve tfplan
+        run: |
+          terraform apply -auto-approve tfplan
+        
+      - name: Update Readme
+        if: success()
+        run: |
+          terraform-docs markdown . > README.md
+      
+      # - name: Commit readme changes
+      #   if: success()
+      #   run: |
+      #     git config --local user.name "Github Action"
+      #     git config --local user.email "action@github.com"
+      #     git add README.md
+      #     git commit -m "Update README with Terraform documentation"
+      #     git push origin main
+      #   env:
+      #       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       #- name: Clean up
       #  if: success()  # Clean up if everything was successful
