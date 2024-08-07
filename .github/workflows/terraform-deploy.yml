@@ -68,14 +68,15 @@ jobs:
             <!-- END_TF_DOCS -->
           indention: 3
           
-      - name: Commit & Push changes
-        uses: actions-js/push@master
-        with:
-            github_token: ${{ secrets.GITHUB_TOKEN }} 
+      # - name: Commit & Push changes
+      #   uses: actions-js/push@master
+      #   with:
+      #       github_token: ${{ secrets.GITHUB_TOKEN }} 
 
-      # - name: Commit readme changes
-      #   if: success()
-      #   run: |
+      - name: Commit readme changes
+        if: success()
+        run: |
+          ls -la .git/objects
       #     git config --local user.name "Github Action"
       #     git config --local user.email "action@github.com"
       #     git add README.md
