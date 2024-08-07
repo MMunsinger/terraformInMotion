@@ -49,16 +49,16 @@ jobs:
         run: |
           terraform-docs markdown . > README.md
       
-      # - name: Commit readme changes
-      #   if: success()
-      #   run: |
-      #     git config --local user.name "Github Action"
-      #     git config --local user.email "action@github.com"
-      #     git add README.md
-      #     git commit -m "Update README with Terraform documentation"
-      #     git push origin main
-      #   env:
-      #       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Commit readme changes
+        if: success()
+        run: |
+          git config --local user.name "Github Action"
+          git config --local user.email "action@github.com"
+          git add README.md
+          git commit -m "Update README with Terraform documentation"
+          git push origin main
+        env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       #- name: Clean up
       #  if: success()  # Clean up if everything was successful
