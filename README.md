@@ -21,8 +21,7 @@ When a change in .tf is detected on push to main, the work flow runs.
 * Pull request action
 * etc 
 <!-- BEGIN_TF_DOCS -->
-# Test Top Line text here
-## Verify
+# Terraform Configuration
 # Usage
 ## Requirements
 
