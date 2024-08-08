@@ -77,8 +77,8 @@ jobs:
         if: success()  # This will now run if previous steps are successful
         run: |
           sudo chown -R $USER:$USER .  # Change ownership to the current user
-          git config --global user.email "matthew.munsinger@gmail.com"
-          git config --global user.name "MMunsinger"
+          git config --global user.email "actions@github.com"
+          git config --global user.name "GitHub Actions"
           git add README.md
           git commit -m "Update README with Terraform documentation" || echo "No changes to commit"
           git push origin main
