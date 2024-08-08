@@ -34,12 +34,6 @@ resource "azurerm_virtual_network" "example" {
     address_prefix = "10.0.1.0/24"
   }
 
-  subnet {
-    name           = "subnet12"
-    address_prefix = "10.0.2.0/24"
-    security_group = azurerm_network_security_group.example.id
-  }
-
   tags = {
     "dateDestroy" : "12/12/2024"
   }
@@ -53,7 +47,7 @@ resource "azurerm_network_interface" "example" {
 
   ip_configuration {
     name                          = "internal"
-    subnet_id                     = azurerm_virtual_network.example.subnet[0]
+    subnet_id                     = azurerm_virtual_network.example.subnet
     private_ip_address_allocation = "Dynamic"
   }
 }
