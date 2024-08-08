@@ -40,7 +40,8 @@ resource "azurerm_virtual_network" "example" {
     security_group = azurerm_network_security_group.example.id
   }
 
-  # tags = {
-  #   "dateDestroy" : "12/12/2024"
-  # }
+  tags = {
+    "dateDestroy" : "12/12/2024"
+  }
+  
  }
