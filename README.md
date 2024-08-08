@@ -1,5 +1,12 @@
-# terraformInMotion
-Add to check action doesnt run again as confirmation
+#Repository Description
+This repository is a CI/CD pipeline designed to automate the deployment of infrastructure as code using Terraform on Azure. The workflow is built with GitHub Actions and includes the following key features:
+
+    Infrastructure Management: Uses Terraform to define and provision cloud resources in a reliable and repeatable manner.
+    Cost Estimation: Integrates Infracost to provide accurate cost estimates for Terraform plans, helping users understand the financial implications of their infrastructure changes before deployment.
+    Documentation Generation: Automatically generates and updates Terraform documentation within the repository to ensure clarity and maintainability of infrastructure definitions.
+    Continuous Deployment: Automatically applies infrastructure changes upon successful plan verification, ensuring that the latest configurations are consistently deployed.
+
+This repository serves as a template for managing Azure resources, estimating costs, and maintaining up-to-date documentation.
 <!-- BEGIN_TF_DOCS -->
 # Test Top Line text here
 ## Verify
