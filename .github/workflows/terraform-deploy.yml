@@ -54,6 +54,8 @@ jobs:
           infracost breakdown --path tfplan --format json --out-file infracost-base.json
 
       - name: Post Infracost Output
+        env:
+          INFRACOST_API_KEY: ${{ secrets.INFRACOST_API_KEY}}
         run: |
           infracost diff --path infracost-base.json --format diff > infracost_report.md
 
