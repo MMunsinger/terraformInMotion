@@ -10,6 +10,16 @@ This repository is a CI/CD pipeline designed to automate the deployment of infra
 
 
 This repository serves as a template for managing Azure resources, estimating costs, and maintaining up-to-date documentation.
+# How It Works
+
+When a change in .tf is detected on push to main, the work flow runs.
+
+# Upcoming features
+
+* Add infracost estimated cost to readme
+* Use inputs to provision infrastructure
+* Pull request action
+* etc 
 <!-- BEGIN_TF_DOCS -->
 # Test Top Line text here
 ## Verify
