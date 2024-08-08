@@ -16,16 +16,16 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@main
+        uses: actions/checkout@v3  # Updated to use the latest version of checkout
         with:
-          persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of personal token
-          fetch-depth: 0 # otherwise, you will fail to push refs to dest repo
+          persist-credentials: false
+          fetch-depth: 0
 
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@v2
         with:
           terraform_version: ~>1.9
-      
+
       - name: Run Terraform
         env:
           AZURE_APP_ID: ${{ secrets.AZURE_APP_ID }}
@@ -33,8 +33,8 @@ jobs:
           AZURE_PASSWORD: ${{ secrets.AZURE_PASSWORD }}
           AZURE_TENANT: ${{ secrets.AZURE_TENANT }}
         run: |
-          az login --service-principal -u ${{ secrets.AZURE_APP_ID }} -p ${{ secrets.AZURE_PASSWORD }} --tenant ${{ secrets.AZURE_TENANT }}
-  
+          az login --service-principal -u $AZURE_APP_ID -p $AZURE_PASSWORD --tenant $AZURE_TENANT
+
       - name: Terraform Init
         run: terraform init
 
@@ -46,7 +46,7 @@ jobs:
         if: success()  # Only apply if the plan was successful
         run: |
           terraform apply -auto-approve tfplan
-        
+
       - name: Generate TF Docs
         if: success()
         uses: terraform-docs/gh-actions@v1.2.0
@@ -66,27 +66,20 @@ jobs:
 
             {{ .Content }}
             <!-- END_TF_DOCS -->
-          indention: 3
-          
-      # - name: Commit & Push changes
-      #   uses: actions-js/push@master
-      #   with:
-      #       github_token: ${{ secrets.GITHUB_TOKEN }} 
+          indentation: 3
 
-      - name: Commit readme changes
-        if: success()
+      - name: Commit README changes
+        if: success() && steps.generate_tf_docs.outputs.updated == 'true'
         run: |
-          sudo chmod -R ugo+rwX .
           git config --global user.email "matthew.munsinger@gmail.com"
           git config --global user.name "MMunsinger"
-          git remote set-url origin https://mmunsinger@github.com/mmunsinger/${{ github.repository_id }}.git
           git add README.md
-          git commit -m "Update README with Terraform documentation"
-          git push origin
+          git commit -m "Update README with Terraform documentation" || echo "No changes to commit"
+          git push origin main
         env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Clean up
         run: |
-         terraform destroy -auto-approve
+          terraform destroy -auto-approve
           
