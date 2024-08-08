@@ -1,3 +1,12 @@
+# Infracost Cost Report
+This report shows the cost estimates for your Terraform resources.
+
+## Summary
+
+The following costs are estimated for the Terraform resources defined in this repository:
+
+## Costs Breakdown
+
 Key: * usage cost, ~ changed, + added, - removed
 
 ──────────────────────────────────
