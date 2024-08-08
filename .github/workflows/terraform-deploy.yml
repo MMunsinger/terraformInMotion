@@ -36,8 +36,9 @@ jobs:
           az login --service-principal -u $AZURE_APP_ID -p $AZURE_PASSWORD --tenant $AZURE_TENANT
 
       - name: Terraform Init
+        id: tf_init
         run: terraform init
-
+        
       - name: Set up Infracost
         run: |
           curl -sSfL https://raw.githubusercontent.com/infracost/infracost/master/scripts/install.sh | sh
@@ -60,7 +61,7 @@ jobs:
           infracost diff --path infracost-base.json --format diff > infracost_report.md
 
       - name: Terraform Apply
-        if: success()  # Only apply if the plan was successful
+        if: steps.tf_init.outcome == 'success'
         run: |
           terraform apply -auto-approve tfplan
 
