@@ -58,7 +58,8 @@ jobs:
         env:
           INFRACOST_API_KEY: ${{ secrets.INFRACOST_API_KEY}}
         run: |
-          infracost diff --path infracost-base.json --compare-to infracost-base.json --out-file infracost_report.md
+          terraform show -json tfplan > plan.json
+          infracost diff --path plan.json --compare-to infracost-base.json --out-file infracost_report.md
 
       - name: Terraform Apply
         if: steps.tf_init.outcome == 'success'
