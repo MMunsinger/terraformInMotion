@@ -55,7 +55,7 @@ jobs:
 
       - name: Post Infracost Output
         run: |
-          infracost show --path infracost_output.json --format markdown > infracost_report.md
+          infracost diff --path infracost_output.json --format markdown > infracost_report.md
 
       - name: Terraform Apply
         if: success()  # Only apply if the plan was successful
