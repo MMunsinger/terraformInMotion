@@ -54,12 +54,39 @@ jobs:
         id: plan
         run: terraform plan -out=tfplan
 
+      # - name: Post Infracost Output
+      #   env:
+      #     INFRACOST_API_KEY: ${{ secrets.INFRACOST_API_KEY}}
+      #   run: |
+      #     terraform show -json tfplan > plan.json
+      #     infracost diff --path plan.json --compare-to infracost-base.json --out-file infracost_report.md
       - name: Post Infracost Output
         env:
-          INFRACOST_API_KEY: ${{ secrets.INFRACOST_API_KEY}}
+          INFRACOST_API_KEY: ${{ secrets.INFRACOST_API_KEY }}
         run: |
           terraform show -json tfplan > plan.json
-          infracost diff --path plan.json --compare-to infracost-base.json --out-file infracost_report.md
+          
+          # Generate the Infracost report and save it in markdown format
+            infracost diff --path plan.json --compare-to infracost-base.json --out-file infracost_report.md
+          
+          # Prepend a header and additional formatting to the report
+          echo "# Infracost Cost Report" > formatted_report.md
+          echo "This report shows the cost estimates for your Terraform resources." >> formatted_report.md
+          echo "" >> formatted_report.md
+          echo "## Summary" >> formatted_report.md
+          echo "" >> formatted_report.md
+          echo "The following costs are estimated for the Terraform resources defined in this repository:" >> formatted_report.md
+          echo "" >> formatted_report.md
+          echo "## Costs Breakdown" >> formatted_report.md
+          echo "" >> formatted_report.md
+          
+          # Append the generated Infracost report
+          cat infracost_report.md >> formatted_report.md
+          
+          # Replace the original report with the formatted one
+          mv formatted_report.md infracost_report.md
+
+
 
       - name: Terraform Apply
         if: steps.tf_init.outcome == 'success'
