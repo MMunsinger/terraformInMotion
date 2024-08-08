@@ -39,10 +39,16 @@ jobs:
         id: tf_init
         run: terraform init
         
-      - name: Set up Infracost
-        run: |
-          curl -sSfL https://raw.githubusercontent.com/infracost/infracost/master/scripts/install.sh | sh
-          infracost --version
+      - name: Infracost Actions
+        uses: infracost/actions@v3.0.0
+        with: 
+          api-key: ${{ secrets.INFRACOST_API_KEY }}
+          path: tfplan
+          behavior: update
+      # - name: Set up Infracost
+      #   run: |
+      #     curl -sSfL https://raw.githubusercontent.com/infracost/infracost/master/scripts/install.sh | sh
+      #     infracost --version
 
       - name: Generate Infracost Estimate
         env:
@@ -85,13 +91,6 @@ jobs:
           
       #     # Replace the original report with the formatted one
       #     mv formatted_report.md infracost_report.md
-
-      - name: Infracost Actions
-        uses: infracost/actions@v3.0.0
-        with: 
-          api-key: ${{ secrets.INFRACOST_API_KEY }}
-          path: tfplan
-          behavior: update
 
       - name: Terraform Apply
         if: steps.tf_init.outcome == 'success'
