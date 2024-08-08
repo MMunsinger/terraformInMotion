@@ -19,7 +19,11 @@ When a change in .tf is detected on push to main, the work flow runs.
 * Add infracost estimated cost to readme
 * Use inputs to provision infrastructure
 * Pull request action
-* etc 
+* Test, Stage, and Production Environments
+* Configuration Testing/Validation workflow
+* Version tagging
+* Intergrate teams notifications (potentially)
+* Automatic diagrams
 
 ## - - - - - - Below updates dynamically with configuration changes - - - - - -
 
