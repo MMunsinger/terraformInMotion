@@ -69,6 +69,10 @@ jobs:
             {{ .Content }}
             <!-- END_TF_DOCS -->
 
+      - name: Set up Git remote
+        run: |
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+
       - name: Commit README changes
         if: success()  # This will now run if previous steps are successful
         run: |
