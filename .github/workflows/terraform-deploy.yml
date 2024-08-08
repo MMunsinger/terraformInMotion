@@ -45,7 +45,7 @@ jobs:
       - name: Set up Infracost
         run: |
           curl -sSfL https://raw.githubusercontent.com/infracost/infracost/master/scripts/install.sh | sh
-          infracost version
+          infracost --version
 
       - name: Generate Infracost Estimate
         run: |
