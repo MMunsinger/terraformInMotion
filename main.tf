@@ -48,12 +48,12 @@ resource "azurerm_virtual_network" "example" {
 
 resource "azurerm_network_interface" "example" {
   name                = "example-nic"
-  location            = azurerm_resource_group.example.location
-  resource_group_name = azurerm_resource_group.example.name
+  location            = azurerm_resource_group.my_rg.location
+  resource_group_name = azurerm_resource_group.my_rg.name
 
   ip_configuration {
     name                          = "internal"
-    subnet_id                     = azurerm_virtual_network.example.subnet11.id
+    subnet_id                     = azurerm_virtual_network.example.subnet11.subnet_id
     private_ip_address_allocation = "Dynamic"
   }
 }
