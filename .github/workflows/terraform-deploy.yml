@@ -48,6 +48,8 @@ jobs:
           infracost --version
 
       - name: Generate Infracost Estimate
+        env:
+          INFRACOST_API_KEY: ${{ secrets.INFRACOST_API_KEY }}
         run: |
           infracost breakdown --path tfplan --format json --out-file infracost_output.json
 
