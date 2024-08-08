@@ -42,8 +42,8 @@ resource "azurerm_virtual_network" "example" {
 
 data "azurerm_subnet" "my_snet" {
   name                 = "subnet11"
-  virtual_network_name = data.azurerm_virtual_network.example.name
-  resource_group_name  = data.azurerm_virtual_network.example.resource_group_name
+  virtual_network_name = azurerm_virtual_network.example.name
+  resource_group_name  = azurerm_virtual_network.example.resource_group_name
 }
 
 resource "azurerm_network_interface" "example" {
