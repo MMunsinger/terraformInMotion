@@ -53,7 +53,7 @@ jobs:
         if: success()
         uses: terraform-docs/gh-actions@v1.2.0
         with:
-          working-dir: .
+          working-dir: ./
           output-file: README.md
           template: |-
             <!-- BEGIN_TF_DOCS -->
