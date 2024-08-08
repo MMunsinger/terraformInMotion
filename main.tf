@@ -34,9 +34,9 @@ resource "azurerm_virtual_network" "example" {
     address_prefix = "10.0.1.0/24"
   }
 
-  # tags = {
-  #   "dateDestroy" : "12/12/2024"
-  # }
+  tags = {
+    "dateDestroy" : "12/12/2024"
+  }
   
  }
 

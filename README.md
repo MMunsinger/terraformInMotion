@@ -61,3 +61,5 @@ No inputs.
 
 No outputs.
 <!-- END_TF_DOCS -->
+<!-- BEGIN_INFRA_DOCS -->
+<!-- END_INFRA_DOCLS -->
