@@ -45,3 +45,36 @@ resource "azurerm_virtual_network" "example" {
   }
   
  }
+
+resource "azurerm_linux_virtual_machine" "example" {
+  name                = "mmuns-VM1-test"
+  resource_group_name = azurerm_resource_group.my_rg.name
+  location            = azurerm_resource_group.my_rg.location
+  size                = "Standard_DS1_v2"
+  admin_username      = "adminuser"
+  admin_password = "Password!!*$*"
+  disable_password_authentication = false
+  
+  network_interface_ids = [
+    azurerm_network_interface.example.id,
+  ]
+
+  tags = {
+    dateDestroy = "12/12/2024"
+    nightlyShutdown = "True"
+  }
+
+  os_disk {
+    caching              = "ReadWrite"
+    storage_account_type = "Standard_LRS"
+  }
+
+  source_image_reference {
+    publisher = "Canonical"
+    offer     = "0001-com-ubuntu-server-jammy"
+    sku       = "22_04-lts"
+    version   = "latest"
+  }
+
+}
+
