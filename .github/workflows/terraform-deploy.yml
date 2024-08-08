@@ -70,8 +70,9 @@ jobs:
             <!-- END_TF_DOCS -->
 
       - name: Commit README changes
-        if: success()
+        if: success()  # This will now run if previous steps are successful
         run: |
+          sudo chown -R $USER:$USER .  # Change ownership to the current user
           git config --global user.email "matthew.munsinger@gmail.com"
           git config --global user.name "MMunsinger"
           git add README.md
