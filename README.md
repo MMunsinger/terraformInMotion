@@ -20,6 +20,9 @@ When a change in .tf is detected on push to main, the work flow runs.
 * Use inputs to provision infrastructure
 * Pull request action
 * etc 
+
+## Below updates dynamically with configuration changes
+
 <!-- BEGIN_TF_DOCS -->
 # Terraform Configuration
 # Usage
