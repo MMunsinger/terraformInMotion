@@ -40,6 +40,12 @@ resource "azurerm_virtual_network" "example" {
   
  }
 
+data "azurerm_subnet" "my_snet" {
+  name                 = "subnet11"
+  virtual_network_name = data.azurerm_virtual_network.example.name
+  resource_group_name  = data.azurerm_virtual_network.example.resource_group_name
+}
+
 resource "azurerm_network_interface" "example" {
   name                = "example-nic"
   location            = azurerm_resource_group.my_rg.location
@@ -47,7 +53,7 @@ resource "azurerm_network_interface" "example" {
 
   ip_configuration {
     name                          = "internal"
-    subnet_id                     = azurerm_virtual_network.example.subnet.subnet11
+    subnet_id                     = data.azurerm_subnet.my_snet.id
     private_ip_address_allocation = "Dynamic"
   }
 }
