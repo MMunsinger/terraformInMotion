@@ -18,6 +18,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3  # Updated to use the latest version of checkout
         with:
+          repository: actions/checkout
+          ref: main
           persist-credentials: false
           fetch-depth: 0
 
