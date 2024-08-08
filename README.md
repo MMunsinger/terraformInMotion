@@ -2,14 +2,8 @@
 Add to check action doesnt run again as confirmation
 <!-- BEGIN_TF_DOCS -->
 # Test Top Line text here
-
 ## Verify
-
-Some text here line 1
-Some text here line 2
-
 # Usage
-
 ## Requirements
 
 | Name | Version |
