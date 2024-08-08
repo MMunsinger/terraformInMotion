@@ -38,10 +38,6 @@ jobs:
       - name: Terraform Init
         run: terraform init
 
-      - name: Terraform Plan
-        id: plan
-        run: terraform plan -out=tfplan
-
       - name: Set up Infracost
         run: |
           curl -sSfL https://raw.githubusercontent.com/infracost/infracost/master/scripts/install.sh | sh
@@ -52,6 +48,10 @@ jobs:
           INFRACOST_API_KEY: ${{ secrets.INFRACOST_API_KEY }}
         run: |
           infracost breakdown --path tfplan --format json --out-file infracost-base.json
+
+      - name: Terraform Plan
+        id: plan
+        run: terraform plan -out=tfplan
 
       - name: Post Infracost Output
         env:
