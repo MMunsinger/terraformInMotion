@@ -58,14 +58,8 @@ jobs:
           template: |-
             <!-- BEGIN_TF_DOCS -->
             # Test Top Line text here
-
             ## Verify
-
-            Some text here line 1
-            Some text here line 2
-
             # Usage
-
             {{ .Content }}
             <!-- END_TF_DOCS -->
 
