@@ -51,11 +51,11 @@ jobs:
         env:
           INFRACOST_API_KEY: ${{ secrets.INFRACOST_API_KEY }}
         run: |
-          infracost breakdown --path tfplan --format json --out-file infracost_output.json
+          infracost breakdown --path tfplan --format json --out-file infracost-base.json
 
       - name: Post Infracost Output
         run: |
-          infracost diff --path infracost_output.json --format markdown > infracost_report.md
+          infracost diff --path infracost-base.json --format diff > infracost_report.md
 
       - name: Terraform Apply
         if: success()  # Only apply if the plan was successful
