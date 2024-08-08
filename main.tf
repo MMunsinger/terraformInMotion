@@ -71,10 +71,10 @@ resource "azurerm_linux_virtual_machine" "example" {
     azurerm_network_interface.example.id,
   ]
 
-  # tags = {
-  #   dateDestroy = "12/12/2024"
-  #   nightlyShutdown = "True"
-  # }
+  tags = {
+    dateDestroy = "12/12/2024"
+    nightlyShutdown = "True"
+  }
 
   os_disk {
     caching              = "ReadWrite"
