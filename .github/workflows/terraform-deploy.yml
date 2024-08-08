@@ -101,8 +101,7 @@ jobs:
           output-file: README.md
           template: |-
             <!-- BEGIN_TF_DOCS -->
-            # Test Top Line text here
-            ## Verify
+            # Terraform Configuration
             # Usage
             {{ .Content }}
             <!-- END_TF_DOCS -->

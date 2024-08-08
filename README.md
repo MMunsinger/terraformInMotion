@@ -1,6 +1,6 @@
 # Repository Description
 
-This repository is a CI/CD pipeline designed to automate the deployment of infrastructure as code using Terraform on Azure. The workflow is built with GitHub Actions and includes the following key features:
+This repository is a CI/CD pipeline designed to automate the deployment of infrastructure as code using Terraform. The workflow includes the following key features:
 
 
 * Infrastructure Management: Uses Terraform to define and provision cloud resources in a reliable and repeatable manner.
