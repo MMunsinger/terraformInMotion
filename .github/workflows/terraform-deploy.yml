@@ -15,6 +15,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # - name: Infracost Actions
+      #   uses: infracost/actions/setup@v3
+      #   with: 
+      #     api-key: ${{ secrets.INFRACOST_API_KEY }}
+
       - name: Checkout code
         uses: actions/checkout@v3  # Updated to use the latest version of checkout
         with:
@@ -38,27 +43,21 @@ jobs:
       - name: Terraform Init
         id: tf_init
         run: terraform init
-        
-      - name: Infracost Actions
-        uses: infracost/actions@v3.0.0
-        with: 
-          api-key: ${{ secrets.INFRACOST_API_KEY }}
-          path: tfplan
-          behavior: update
+
       # - name: Set up Infracost
       #   run: |
       #     curl -sSfL https://raw.githubusercontent.com/infracost/infracost/master/scripts/install.sh | sh
       #     infracost --version
 
-      - name: Generate Infracost Estimate
-        env:
-          INFRACOST_API_KEY: ${{ secrets.INFRACOST_API_KEY }}
-        run: |
-          infracost breakdown --path tfplan --format json --out-file infracost-base.json
+      # - name: Generate Infracost Estimate
+      #   env:
+      #     INFRACOST_API_KEY: ${{ secrets.INFRACOST_API_KEY }}
+      #   run: |
+      #     infracost breakdown --path tfplan --format json --out-file infracost-base.json
 
-      - name: Terraform Plan
-        id: plan
-        run: terraform plan -out=tfplan
+      # - name: Terraform Plan
+      #   id: plan
+      #   run: terraform plan -out=tfplan
 
       # - name: Post Infracost Output
       #   env:
