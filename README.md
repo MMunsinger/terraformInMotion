@@ -29,7 +29,6 @@ When a change in .tf is detected on push to main, the work flow runs.
 
 <!-- BEGIN_TF_DOCS -->
 # Terraform Configuration
-# Usage
 ## Requirements
 
 | Name | Version |
